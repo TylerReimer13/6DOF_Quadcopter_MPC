@@ -228,7 +228,7 @@ class Quadcopter:
     def Q(self):
         # State cost
         Q = np.eye(12)
-        Q[8, 8] = 10.  # z vel
+        Q[8, 8] = 5.  # z vel
         Q[9, 9] = 10.  # x pos
         Q[10, 10] = 10.  # y pos
         Q[11, 11] = 100.  # z pos
@@ -308,7 +308,7 @@ class Quadcopter:
 
 if __name__ == "__main__":
     # Simulation and solver time step (lower is more accurate, but takes more time. Shouldn't go higher than .025)
-    DT = .025
+    DT = .1
 
     # Defined desired waypoints to track
     waypoints = np.array([[0., 0.], [1., 2.], [2., 4.5], [3., 3.]])
@@ -350,7 +350,7 @@ if __name__ == "__main__":
     u = cp.Variable((nu, N))
     x_init = cp.Parameter(nx)
 
-    nsim = 1000  # Number of simulation time steps
+    nsim = 250  # Number of simulation time steps
 
     x_pos = []
     y_pos = []
